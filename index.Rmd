@@ -1,23 +1,53 @@
 ---
-title: "TEST！"
-author: "☁️TEST☁️"
-output:
-  html_document:
-    collapsed: false
-    number_sections: false
-    # includes:
-    #    in_header: GA.html
+title: "Tilixixi"
+#author: "☁️B站罗云熙首页拯救计划☁️"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: bootstrap
+    navbar:
+      - { title: "About", href: "https://example.com/about", align: left }
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache=FALSE)
+library(flexdashboard)
 library(DT)
 library(stringr)
 source("Bilixixi.R")
-
 ```
 
+
+Page 1
+===================================== 
+
+Column {data-width=100}
+-----------------------------------------------------------------------
+
 test
+
+<br/>
+
+### 支持排序·筛选·搜索功能
+yeah
+
+<br/>
+
+### 已人工屏蔽部分路透用户
+hey
+
+<br/>
+
+### 暂只支持8月16日后上线的作品
+oh
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+
+支持排序·筛选·搜索功能 | 已人工屏蔽部分路透用户 | 暂只支持8月16日后上线作品
 
 ```{r vie}
 # vie[,c("titlelink","lengthnum","viewnum","text","upload","uplink")]
@@ -26,40 +56,21 @@ test
 #htmltools::tags$script(src = "myselect copy.js")
 options(width = 10000)
 
-x=datatable(vie, filter = 'top',plugins =list('select'),style ="bootstrap",#class="hover",
+x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
+            style ="bootstrap",#class="hover",
           #extensions = 'FixedColumns',
 #####################
 
           options = list(
-          initComplete = JS(
-            "$.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = parseInt( $('#min').val(), 10 );
-        var max = parseInt( $('#max').val(), 10 );
-        var age = parseFloat( data[3] ) || 0; // use data for the age column
- 
-        if ( ( isNaN( min ) && isNaN( max ) ) ||
-             ( isNaN( min ) && viewnum <= max ) ||
-             ( min <= viewnum   && isNaN( max ) ) ||
-             ( min <= viewnum   && viewnum <= max ) )
-        {
-            return true;
-        }
-        return false;
-    }
-);
- 
-$(document).ready(function() {
-    var table = $('#example').DataTable();
-     
-    // Event listener to the two range filtering inputs to redraw on input
-    $('#min, #max').keyup( function() {
-        table.draw();
-    } );
-} );"),
-                        sPaginationType = list('listbox'),
-                        #pagingType="numbers",
-                        pageLength = 30,
+          # initComplete = JS(
+          #   "function(settings, json) {
+          #   $(window).resize(function() {
+          #   oTable.fnAdjustColumnSizing();
+          #   })}"
+          # ),
+                        #sPaginationType = list('listbox'),
+                        pagingType="numbers",
+                        pageLength = 25,
                         language = list(search = '搜索:',
                         lengthMenu='每页显示 _MENU_ 个视频',
                         zeroRecords='什么也没找到，换个关键词试试',
@@ -71,22 +82,30 @@ $(document).ready(function() {
                         first='第一页',
                         last='最后一页')),
                         
+                         
                         columnDefs = list(
-                        list(targets=2,
+                        list(targets=1,
                         render = JS(
                      "function(data, type, row, meta) {",
                      "return type === 'display'?",
                      "'<span title=\"'+data +'\">'+Math.floor(data/60) + '分'+Math.floor(data%60)+'秒</span>' : data;",
                      "}")
               ),
-              list(targets=3,
+              list(targets=2,
                    render = JS(
                      "function(data, type, row, meta) {",
                      "return type === 'display' && data>=10000 ?",
                      "'<span title=\"' + data + '\">'+Math.floor(data/1000)/10+'万</span>' : data;",
                      "}")
               ),
-              list(targets=5,
+               list(targets=2,
+                   render = JS(
+                     "function(data, type, row, meta) {",
+                     "return type === 'display' && data>=10000 ?",
+                     "'<span title=\"' + data + '\">'+Math.floor(data/1000)/10+'万</span>' : data;",
+                     "}")
+              ),
+              list(targets=4,
                    render = JS(
                      "function(data, type, row, meta) {",
                      "return type === 'display' ?",
@@ -96,18 +115,16 @@ $(document).ready(function() {
               list(targets= '_all',
                 createdCell=JS(
                   "function (td, cellData, rowData, row, col) {",
-                    "$(td).css('padding', '8px 4px 8px 4px')",
+                    "$(td).css('padding', '8px 2px 8px 2px')",
                   "}")
               ),
-              list(targets=2:5,
+              list(targets=1:4,
                    class="dt-body-center"),
               list(targets='_all',
-                   class="dt-head-center"),
-              list(targets='_all',
-                   className = 'dt-middle')
+                   class="dt-head-center")
           )),
           escape = FALSE,
-          colnames = c("标题","时长","观看","弹幕","日期","阿婆主")
+          colnames = c("标题","时长","观看","弹幕","日期","UP")
           )
 
 css_text <- "
@@ -119,3 +136,12 @@ htmlwidgets::prependContent(x, htmltools::tags$head(css))
 ```
 
 最近更新: `r lastdate` hmmm
+
+Column {data-width=100}
+-----------------------------------------------------------------------
+
+
+帮助
+===================================== 
+
+hehehe
