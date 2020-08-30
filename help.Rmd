@@ -1,20 +1,47 @@
 ---
-title: "TEST！"
-author: "☁️TEST☁️"
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
-    toc_depth: 3
-    # includes:
-    #    in_header: GA.html
+title: "Tilixixi"
+#author: "☁️B站罗云熙首页拯救计划☁️"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: bootstrap
+    navbar:
+       - { title: "Help", href: "https://example.com/about", align: left }
+    
 ---
+
+<!-- <style> -->
+
+<!-- body { -->
+<!--   padding-top:10px -->
+<!-- } -->
+
+<!-- .navbar{ -->
+<!--   height: 10px;  -->
+<!--   <!---visibility: hidden---> -->
+<!-- } -->
+
+
+<!-- </style> -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=FALSE)
 ```
+
+Column {data-width=200}
+-----------------------------------------------------------------------
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+<center>
+
+<h1> 哔嘿熙熙动画!</h1>
+<h4>☁️B站罗云熙首页拯救计划☁️</h4>
+
+[支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后上线作品]("/help.html")
+</center>
 
 <br/>
 
@@ -36,5 +63,7 @@ hey
 oh
 
 
-  
+Column {data-width=200}
+-----------------------------------------------------------------------
+
   

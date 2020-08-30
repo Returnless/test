@@ -7,8 +7,20 @@ output:
     vertical_layout: scroll
     theme: bootstrap
     navbar:
-      - { title: "About", href: "https://example.com/about", align: left }
+       - { title: "About", href: "https://example.com/about", align: left }
 ---
+
+<!-- <style> -->
+
+<!-- body { -->
+<!--   padding-top:0px -->
+<!-- } -->
+
+<!-- .navbar{ -->
+<!--   visibility: hidden -->
+<!-- } -->
+
+<!-- </style> -->
 
 
 ```{r setup, include=FALSE}
@@ -22,32 +34,25 @@ source("Bilixixi.R")
 Page 1
 ===================================== 
 
-Column {data-width=100}
+Column {data-width=200}
 -----------------------------------------------------------------------
 
-<!-- test -->
-
-<!-- <br/> -->
-
-<!-- ### 支持排序·筛选·搜索功能{.no-mobile } -->
-<!-- yeah -->
-
-<!-- <br/> -->
-
-<!-- ### 已人工屏蔽部分路透用户 -->
-<!-- hey -->
-
-<!-- <br/> -->
-
-<!-- ### 暂只支持8月16日后上线的作品 -->
-<!-- oh -->
 
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 
-支持排序·筛选·搜索功能 | 已人工屏蔽部分路透用户 | 暂只支持8月16日后上线作品
+<center>
+
+<h1> 哔嘿熙熙动画!</h1>
+<h4>☁️B站罗云熙首页拯救计划☁️</h4>
+
+[支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后上线作品]("/help.html")
+
+</center>
+
+
 
 ```{r vie}
 # vie[,c("titlelink","lengthnum","viewnum","text","upload","uplink")]
@@ -112,7 +117,19 @@ x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
                      "'<span title=\"' + data + '\">' + data.substr(5, 12) + '</span>' : data;",
                      "}")
               ),
-              list(targets= '_all',
+              list(targets= 1,
+                createdCell=JS(
+                  "function (td, cellData, rowData, row, col) {",
+                    "$(td).css('padding', '8px 10px 8px 2px')",
+                  "}")
+              ),
+              list(targets= 5,
+                createdCell=JS(
+                  "function (td, cellData, rowData, row, col) {",
+                    "$(td).css('padding', '8px 2px 8px 10px')",
+                  "}")
+              ),
+              list(targets= 2:5,
                 createdCell=JS(
                   "function (td, cellData, rowData, row, col) {",
                     "$(td).css('padding', '8px 2px 8px 2px')",
@@ -135,13 +152,12 @@ htmlwidgets::prependContent(x, htmltools::tags$head(css))
 
 ```
 
+
 最近更新: `r lastdate` hmmm
 
-Column {data-width=100}
+
+
+
+Column {data-width=200}
 -----------------------------------------------------------------------
 
-
-帮助
-===================================== 
-
-hehehe
