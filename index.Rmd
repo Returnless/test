@@ -1,5 +1,5 @@
 ---
-title: "Tilixixi"
+title: "哔哩嘿嘿动画!"
 #author: "☁️B站罗云熙首页拯救计划☁️"
 output: 
   flexdashboard::flex_dashboard:
@@ -8,29 +8,17 @@ output:
     theme: bootstrap
     logo: BilixixiLogo.png
     navbar:
-       - { title: "About",  href: "https://example.com/about", align: left }
+       - { title: "首页", href: "index.html", align: left }
+       - { title: "帮助", href: "help.html", align: left }
 ---
 
-<!-- <style> -->
-
-<!-- body { -->
-<!--   padding-top:0px -->
-<!-- } -->
-
-<!-- .navbar{ -->
-<!--   visibility: hidden -->
-<!-- } -->
-
-<!-- </style> -->
-
-
 ```{r setup, include=FALSE}
-library(flexdashboard)
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache=FALSE)
 library(DT)
 library(stringr)
 source("Bilixixi.R")
-```
 
+```
 
 
 Column {data-width=200}
@@ -44,37 +32,25 @@ Column {data-width=650}
 
 <center>
 
-<h1> 哔嘿熙熙动画!</h1>
-<h4>☁️B站罗云熙首页拯救计划☁️</h4>
+<h1> TEST</h4>
 
-[支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后上线作品]("/help.html")
+支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后上线作品
 
 </center>
 
 
-
 ```{r vie}
 # vie[,c("titlelink","lengthnum","viewnum","text","upload","uplink")]
+htmltools::tags$script(src = "mysetting.js")
 
-#htmltools::tags$script(src = "myselect.js")
-#htmltools::tags$script(src = "myselect copy.js")
-options(width = 10000)
-
-x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
-            style ="bootstrap",#class="hover",
-          #extensions = 'FixedColumns',
+datatable(vie, rownames = FALSE, filter = 'top',style ="bootstrap",
+          
 #####################
-
           options = list(
-          # initComplete = JS(
-          #   "function(settings, json) {
-          #   $(window).resize(function() {
-          #   oTable.fnAdjustColumnSizing();
-          #   })}"
-          # ),
-                        #sPaginationType = list('listbox'),
+            lengthChange=F,
+            search = list(regex = TRUE, search = ''),
                         pagingType="numbers",
-                        pageLength = 25,
+                        pageLength = 30,
                         language = list(search = '搜索:',
                         lengthMenu='每页显示 _MENU_ 个视频',
                         zeroRecords='什么也没找到，换个关键词试试',
@@ -86,7 +62,6 @@ x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
                         first='第一页',
                         last='最后一页')),
                         
-                         
                         columnDefs = list(
                         list(targets=1,
                         render = JS(
@@ -116,22 +91,10 @@ x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
                      "'<span title=\"' + data + '\">' + data.substr(5, 12) + '</span>' : data;",
                      "}")
               ),
-              list(targets= 1,
+              list(targets= '_all',
                 createdCell=JS(
                   "function (td, cellData, rowData, row, col) {",
-                    "$(td).css('padding', '8px 10px 8px 2px')",
-                  "}")
-              ),
-              list(targets= 5,
-                createdCell=JS(
-                  "function (td, cellData, rowData, row, col) {",
-                    "$(td).css('padding', '8px 2px 8px 10px')",
-                  "}")
-              ),
-              list(targets= 2:5,
-                createdCell=JS(
-                  "function (td, cellData, rowData, row, col) {",
-                    "$(td).css('padding', '8px 2px 8px 2px')",
+                    "$(td).css('padding', '8px 4px 8px 4px')",
                   "}")
               ),
               list(targets=1:4,
@@ -143,19 +106,13 @@ x=datatable(vie, rownames = FALSE,filter = 'top',plugins =list('select'),
           colnames = c("标题","时长","观看","弹幕","日期","UP")
           )
 
-css_text <- "
-.dt-middle {vertical-align: middle;}
-"
-css <- htmltools::tags$style(type = "text/css", css_text)
-htmlwidgets::prependContent(x, htmltools::tags$head(css))
-
 ```
 
+<center>
+最近更新: `r lastdate` | 微博: test
+</center>
 
-最近更新: `r lastdate` hmmm
-
-
-
+</br>
 
 Column {data-width=200}
 -----------------------------------------------------------------------
