@@ -23,11 +23,11 @@ mydf$length = ifelse(grepl(":[0-9]{1,2}:",as.character(mydf$length)),
                      paste0("00:",as.character(mydf$length)))
 mydf$titlelink = paste0("<a href='https://www.bilibili.com/video/",mydf$link,"' target='_blank'>",mydf$title,"</a>")
 mydf$uplink = paste0("<a href='https://space.bilibili.com/",mydf$space,"' target='_blank'>",mydf$up,"</a>")
-
 vie = mydf%>%filter(!up%in%blacklist)%>%filter(!space%in%blackspace)%>%arrange(-viewnum)
 vie$upload = as.Date(vie$upload)
+#vie$upload = strftime(vie$upload)
 vie$lengthnum = lubridate::seconds(lubridate::hms(vie$length))
-vie = vie[,c("titlelink","lengthnum","viewnum","text","upload","uplink")]
+vie = vie[,c("titlelink","lengthnum","viewnum","text","upload","uplink","title")]
 
 #colnames(vie)=c("BV号","标题","长度","观看","弹幕","上传","阿婆主")
 
