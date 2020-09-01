@@ -4,7 +4,7 @@ title: "哔哩嘿嘿动画!"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
-    vertical_layout: fill
+    vertical_layout: scroll
     theme: bootstrap
     logo: BilixixiLogo.png
     navbar:
@@ -42,10 +42,10 @@ s {.sidebar data-width=260 }
 
 ```{r}
 bscols(
-filter_checkbox("myfilter1", "最新上传", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上"))),
-filter_checkbox("myfilter2", "视频时长", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上"))),
-filter_checkbox("myfilter3", "播放数据", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上"))),
-filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , "个人向")))
+filter_checkbox("myfilter1", "☁️最新上传☁️", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上"))),
+filter_checkbox("myfilter2", "☁️视频时长☁️", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上"))),
+filter_checkbox("myfilter3", "☁️播放数据☁️", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上"))),
+filter_checkbox("myfilter4", "☁️标题类型☁️", try, ~ifelse(tag==T, "多人向" , "个人向")))
 ```
 
 
@@ -54,13 +54,13 @@ filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , 
 
 ```{r}
 
-filter_checkbox("myfilter1", "最新上传", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上")),inline = T)
+filter_checkbox("myfilter1", "☁️最新上传☁️", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上")),inline = T)
 
-filter_checkbox("myfilter2", "视频时长", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上")),inline = T)
+filter_checkbox("myfilter2", "☁️视频时长☁️", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上")),inline = T)
 
-filter_checkbox("myfilter3", "播放数据", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上")),inline = T)
+filter_checkbox("myfilter3", "☁️播放数据☁️", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上")),inline = T)
 
-filter_checkbox("myfilter4", "标题类型", try, ~ifelse(tag==T, "多人向" , "个人向"),inline = T)
+filter_checkbox("myfilter4", "☁️标题类型☁️", try, ~ifelse(tag==T, "多人向" , "个人向"),inline = T)
 
 filter_select("myfilter5", "标题查询", try, ~title)
 filter_select("myfilter6", "UP主查询", try, ~uplink)
