@@ -26,7 +26,7 @@ try = SharedData$new(vie)
 
 
 
-s {.sidebar data-width=300 }
+s {.sidebar data-width=260 }
 -----------------------------------------------------------------------
 
 
@@ -49,9 +49,8 @@ filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , 
 ```
 
 
-### 3 {.no-mobile}
+###  {.no-mobile}
 
-<div>
 
 ```{r}
 
@@ -61,22 +60,14 @@ filter_checkbox("myfilter2", "视频时长", try, ~ifelse(lengthnum < 300 , "5�
 
 filter_checkbox("myfilter3", "播放数据", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上")),inline = T)
 
-filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , "个人向"),inline = T)
+filter_checkbox("myfilter4", "标题类型", try, ~ifelse(tag==T, "多人向" , "个人向"),inline = T)
 
-```
+filter_select("myfilter5", "标题查询", try, ~title)
+filter_select("myfilter6", "UP主查询", try, ~uplink)
 
-</div>
+# filter_slider("myfilter7", "播放量", try, ~viewnum, width = "100%")
+# filter_slider("myfilter8", "弹幕数", try, ~text, width = "100%")
 
-### d {.no-mobile}
-
-```{r}
-
-bscols(
-filter_select("myfilter5", "标题查询", try, ~title),
-filter_select("myfilter6", "UP主查询", try, ~uplink))
-
-filter_slider("myfilter7", "弹幕数", try, ~text, width = "100%")
-#filter_slider("myfilter8", "上传", try, ~upload, width = "100%")
 ```
 
 
@@ -94,13 +85,13 @@ Column {data-width=500}
 
 #htmltools::tags$script(src = "mysetting.js")
 
-datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",
+datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",selection="none",
           options = list(
             deferRender=TRUE,
             lengthChange=F,
             search = list(regex = TRUE, search = ''),
                         pagingType="numbers",
-                        pageLength = 100,
+                        pageLength = 30,
                         language = list(search = '正则搜索:',
                         lengthMenu='每页显示 _MENU_ 个视频',
                         zeroRecords='什么也没找到，换个关键词试试',
