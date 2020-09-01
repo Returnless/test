@@ -13,45 +13,72 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache=FALSE)
+library(wordcloud2)
 library(DT)
 library(stringr)
 library(crosstalk)
 source("Bilixixi.R")
-#{data-width=400}
+try = SharedData$new(vie)
+
 ```
 
 
 
-Column {.sidebar data-width=300}
+s {.sidebar data-width=300 }
 -----------------------------------------------------------------------
 
-### 
 
 <center>
 
 <h1> TEST</h4>
 
-支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后上线作品
+哔哩熙熙，我们是认真的
 
 </center>
 
+### s {.mobile data-height=120}
+
+```{r}
+bscols(
+filter_checkbox("myfilter1", "最新上传", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上"))),
+filter_checkbox("myfilter2", "视频时长", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上"))),
+filter_checkbox("myfilter3", "播放数据", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上"))),
+filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , "个人向")))
+```
+
+
+### 3 {.no-mobile}
+
+<div>
 
 ```{r}
 
-try = SharedData$new(vie)
+filter_checkbox("myfilter1", "最新上传", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上")),inline = T)
+
+filter_checkbox("myfilter2", "视频时长", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上")),inline = T)
+
+filter_checkbox("myfilter3", "播放数据", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上")),inline = T)
+
+filter_checkbox("myfilter4", "标题标签", try, ~ifelse(tag==T, "多人向" , "个人向"),inline = T)
+
+```
+
+</div>
+
+### d {.no-mobile}
+
+```{r}
 
 bscols(
-filter_select("up", "最近", try, ~ifelse(difftime(lastdate,upload,units = "days") <= 3, "近3天",ifelse(difftime(lastdate,upload,units = "days") <= 7, "近3-7天", "7天以上"))),
-filter_select("auto", "时长", try, ~ifelse(lengthnum < 300 , "5分以内",ifelse(lengthnum < 900, "5-15分", "15分以上"))),
-filter_select("auto", "播放", try, ~ifelse(viewnum < 1000 , "1千以下",ifelse(lengthnum < 10000, "1千-1万", "1万以上"))))
+filter_select("myfilter5", "标题查询", try, ~title),
+filter_select("myfilter6", "UP主查询", try, ~uplink))
 
-filter_select("weishenm", "多词搜索", try, ~title)
-#filter_select("h332", "搜UP主", try, ~uplink)
-filter_slider("hp", "弹幕数", try, ~text, width = "100%")
-#filter_slider("otl", "时间范围", try, ~upload, width = "100%")
-?bscols
+filter_slider("myfilter7", "弹幕数", try, ~text, width = "100%")
+#filter_slider("myfilter8", "上传", try, ~upload, width = "100%")
 ```
+
 
 <center>
 最近更新: `r lastdate` | 微博: test
@@ -73,7 +100,7 @@ datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",
             lengthChange=F,
             search = list(regex = TRUE, search = ''),
                         pagingType="numbers",
-                        pageLength = 30,
+                        pageLength = 100,
                         language = list(search = '正则搜索:',
                         lengthMenu='每页显示 _MENU_ 个视频',
                         zeroRecords='什么也没找到，换个关键词试试',
@@ -95,6 +122,9 @@ datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",
                      "}")
               ),
               list(targets=6,
+                   visible=FALSE
+              ),
+              list(targets=7,
                    visible=FALSE
               ),
               list(targets=2,
@@ -123,7 +153,7 @@ datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",
                    class="dt-head-center")
           )),
           escape = FALSE,
-          colnames = c("标题","时长","观看","弹幕","日期","UP","隐藏")
+          colnames = c("标题","时长","观看","弹幕","日期","UP","隐藏","隐藏2")
           )
 
 
@@ -137,6 +167,7 @@ Column {data-width=10}
 
 ```{r}
 
+#filter_slider("otl", "时间范围", try, ~upload,timeFormat = "%F",width = "100%")
 #filter_slider("lengthnum", "时长", try, column=~log(lengthnum), step=1, width=200)
 #filter("lengthnum", "时长", try, column=~log(lengthnum), step=1, width=200)
 
