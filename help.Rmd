@@ -10,8 +10,8 @@ output:
     navbar:
        - { title: "首页", href: "index.html", align: left }
        - { title: "帮助", href: "help.html", align: left }
-    # includes:
-    #    in_header: GA.html
+    includes:
+       in_header: GA.html
 ---
 
 ```{r setup, include=FALSE}
