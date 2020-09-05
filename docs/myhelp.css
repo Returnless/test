@@ -1,12 +1,4 @@
-body{
-   min-width:620px;        /* Suppose you want minimum width of 1000px */
-   width: auto !important;  /* Firefox will set width as auto */
-   width:620px;            /* As IE6 ignores !important it will set width as 1000px; */
-}
 
-html body div.chart-title {
-  display: none;
-}
 
 label.control-label{
   margin-bottom:6;
@@ -33,11 +25,21 @@ div.section.sidebar{
 }
 
 p{
-  margin-bottom:2px;
+  margin-bottom:10px;
+  padding-left:12px;
+  padding-right:12px;
+}
+
+p.foot{
+  margin-bottom:10px;
+  padding-left:0px;
+  padding-right:0px;
 }
 
 h5{
-  margin-top:0px;
+  margin-top:10px;
+  padding-right:12px;
+  padding-left:12px;
 }
 
 #myfilter5{
@@ -55,13 +57,6 @@ h5{
 }
 
 
-#column{
-  margin: auto;
-  width: 50%;
-  max-width: 900px;
-  min-width:550px;
-}
-
 #help{
   margin: auto;
   width: 50%;
@@ -69,10 +64,10 @@ h5{
 }
 
 div.chart-stage{
-  padding-bottom:10px;
+  padding-bottom:20px;
+  padding-top:20px;
 }
 
 div.opening{
-  padding-left:5%;
-  padding-right:5%;
+  padding: 15px 3%;
 }

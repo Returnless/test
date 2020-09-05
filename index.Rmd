@@ -1,5 +1,5 @@
 ---
-title: "哔哩嘿嘿动画!"
+title: "哔哩熙熙动画!"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -10,6 +10,7 @@ output:
     navbar:
        - { title: "首页", href: "index.html", align: left }
        - { title: "帮助", href: "help.html", align: left }
+       - { title: "殿堂", href: "diantang.html", align: left }
     includes:
        after_body: myfooter.html
 ---
@@ -23,13 +24,7 @@ library(crosstalk)
 source("Bilixixi.R")
 try = SharedData$new(vie)
 
-
-
 ```
-
-
-<!-- Column {data-width=200} -->
-<!-- ----------------------------------------------------------------------- -->
 
 
 
@@ -37,20 +32,18 @@ Column {data-width=650}
 -----------------------------------------------------------------------
 
 
-<img src="http://i0.hdslb.com/bfs/archive/a3539f5fbcf42c7759b71c7fccc725caeac6b8aa.jpg">
-
-
 <center>
-
+</br>
 <h1> 哔哩熙熙动画!</h1>
 <h4>☁️罗云熙B站首页拯救计划☁️</h4>
+</br>
 
 支持排序·筛选·搜索功能 | 已人工屏蔽部分路透 | 支持8月16日后作品
 
 </br>
 </center>
 
-### {data-height=102}
+### {data-height=103}
 
 ```{r}
 bscols(
@@ -127,8 +120,4 @@ datatable(try, rownames = FALSE, filter = 'top',style ="bootstrap",selection="no
           )
 
 ```
-
-
-<!-- Column {data-width=200} -->
-<!-- ----------------------------------------------------------------------- -->
 

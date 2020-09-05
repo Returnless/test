@@ -1,5 +1,5 @@
 body{
-   min-width:600px;        /* Suppose you want minimum width of 1000px */
+   min-width:620px;        /* Suppose you want minimum width of 1000px */
    width: auto !important;  /* Firefox will set width as auto */
    width:620px;            /* As IE6 ignores !important it will set width as 1000px; */
 }
@@ -18,7 +18,7 @@ div.checkbox{
 }
 
 div.col-xs-3{
-  padding-left:5%;
+  padding-left:7%;
   padding-right:0%;
 }
 
@@ -36,8 +36,8 @@ p{
   margin-bottom:2px;
 }
 
-h3{
-  margin-top:15px;
+h5{
+  margin-top:0px;
 }
 
 #myfilter5{
@@ -54,3 +54,25 @@ h3{
   margin-right:0;
 }
 
+
+#column{
+  margin: auto;
+  width: 50%;
+  max-width: 900px;
+  min-width:550px;
+}
+
+#help{
+  margin: auto;
+  width: 50%;
+  max-width: 650px;
+}
+
+div.chart-stage{
+  padding-bottom:10px;
+}
+
+div.opening{
+  padding-left:5%;
+  padding-right:5%;
+}
